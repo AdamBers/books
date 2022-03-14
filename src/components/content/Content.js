@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import InputContext from '../../context'
 import { fetchBooks } from '../../store/asyncAction/fetch'
 import BookCard from './BookCard'
 
 export default function Content() {
-    const [currentPage, setCurrentPage] = useState(1)
+    const { userInput, currentPage, setCurrentPage } = useContext(InputContext)
     const dispatch = useDispatch()
 
-    const handleClick = () => {
+    const handleLoad = () => {
         setCurrentPage(currentPage + 1)
-        // dispatch(fetchBooks(userInput, currentPage))
+        // console.log(currentPage)
+        dispatch(fetchBooks(userInput, currentPage))
     }
     const books = useSelector(state => state.items)
-    let resultsCount = 0
-    resultsCount = useSelector(state => state.totalItems)
+    const resultsCount = useSelector(state => state.totalItems)
+    console.log(resultsCount)
 
-    if (books) {
+    if (resultsCount) {
         return (
             <>
                 <div className='text-center m-4 fw-bold'>found {resultsCount} results</div>
@@ -26,8 +28,8 @@ export default function Content() {
                 <div className="mx-auto text-center">
                     <button
                         type="button"
-                        className="btn btn-info"
-                        onClick={() => handleClick(151, 2)}
+                        className="btn btn-info mb-5"
+                        onClick={() => handleLoad(151, 2)}
                     >
                         Load More
                     </button>

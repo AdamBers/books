@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchBooks } from '../../store/asyncAction/fetch'
+import InputContext from '../../context'
 import background from '../../background.jpg'
 
 export default function Header() {
-    // states   
-    const [userInput, setUserInput] = useState('')
+    // states
+    const { userInput, setUserInput } = useContext(InputContext)
+
     const handleChange = (e) => {
         setUserInput(e.currentTarget.value)
     }
     const dispatch = useDispatch()
     const handleClick = () => {
-        dispatch(fetchBooks(userInput, 1))
+        let currentPage = 1
+        dispatch(fetchBooks(userInput, currentPage))
     }
     return (
         <div className="header text-center p-4" style={{ backgroundImage: "url(" + background + ")" }}>
             <div className="logo m-4 text-light ">
                 <p className='h1'>Google Books</p>
-
-
             </div>
             <div className="input-group text-center mb-4 w-50 mx-auto">
                 <input
@@ -38,6 +39,7 @@ export default function Header() {
                 </button>
             </div>
             <div className='mb-4'>
+
                 <span className='text-light mx-3'>Categories
                     <select>
                         <option defaultValue="all">All</option>
@@ -49,6 +51,7 @@ export default function Header() {
                         <option value="poetry">Poetry</option>
                     </select>
                 </span>
+
                 <span className='text-light mx-3'>Sorting by
                     <select>
                         <option value="relevance ">Relevance </option>
