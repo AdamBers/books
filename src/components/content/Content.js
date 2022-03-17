@@ -5,31 +5,38 @@ import { fetchBooks } from '../../store/asyncAction/fetch'
 import BookCard from './BookCard'
 
 export default function Content() {
-    const { userInput, currentPage, setCurrentPage } = useContext(InputContext)
-    const dispatch = useDispatch()
 
-    const handleLoad = () => {
-        setCurrentPage(currentPage + 1)
-        // console.log(currentPage)
-        dispatch(fetchBooks(userInput, currentPage))
-    }
+    //states
+    const { userInput, currentPage, setCurrentPage, selectValue } = useContext(InputContext)
+    const dispatch = useDispatch()
     const books = useSelector(state => state.items)
     const resultsCount = useSelector(state => state.totalItems)
-    console.log(resultsCount)
+    const handleLoad = () => {
+        dispatch(fetchBooks(userInput, currentPage + 1))
+        setCurrentPage(currentPage + 1)
+    }
 
+    //filter
+    var filtered = books
     if (resultsCount) {
+        if (selectValue !== 'all') {
+            filtered = books.filter((book) => {
+                return book?.volumeInfo?.categories && book.volumeInfo.categories[0].toLowerCase().includes(selectValue.toLowerCase())
+            })
+        }
+
         return (
             <>
-                <div className='text-center m-4 fw-bold'>found {resultsCount} results</div>
+                <div className='text-center m-4 fw-bold'>found {filtered.length} result(s)</div>
                 <div className="d-flex justify-content-center align-items-stretch flex-wrap my-5">
-                    {books.map((book, index) =>
+                    {filtered.map((book, index) =>
                         <BookCard book={book} key={index} />)}
                 </div>
                 <div className="mx-auto text-center">
                     <button
                         type="button"
                         className="btn btn-info mb-5"
-                        onClick={() => handleLoad(151, 2)}
+                        onClick={handleLoad}
                     >
                         Load More
                     </button>

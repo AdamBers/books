@@ -6,15 +6,21 @@ import background from '../../background.jpg'
 
 export default function Header() {
     // states
-    const { userInput, setUserInput } = useContext(InputContext)
+    const { userInput, setUserInput, currentPage,
+        setCurrentPage, selectValue, setSelectValue } = useContext(InputContext)
 
     const handleChange = (e) => {
         setUserInput(e.currentTarget.value)
     }
     const dispatch = useDispatch()
     const handleClick = () => {
-        let currentPage = 1
+        setSelectValue('all')
+        setCurrentPage(1)
         dispatch(fetchBooks(userInput, currentPage))
+    }
+
+    const selectChange = (e) => {
+        setSelectValue(e.target.value)
     }
     return (
         <div className="header text-center p-4" style={{ backgroundImage: "url(" + background + ")" }}>
@@ -41,14 +47,14 @@ export default function Header() {
             <div className='mb-4'>
 
                 <span className='text-light mx-3'>Categories
-                    <select>
-                        <option defaultValue="all">All</option>
+                    <select value={selectValue} onChange={selectChange}>
+                        <option value="all">All</option>
                         <option value="art">Art</option>
                         <option value="biography">Biography</option>
                         <option value="computers">Computers</option>
                         <option value="history">History</option>
                         <option value="medical">Medical</option>
-                        <option value="poetry">Poetry</option>
+                        <option value="Poetry">Poetry</option>
                     </select>
                 </span>
 

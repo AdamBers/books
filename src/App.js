@@ -6,8 +6,9 @@ import InputContext from './context';
 function App() {
   const [userInput, setUserInput] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const [selectValue, setSelectValue] = useState('all')
   return (
-    <InputContext.Provider value={{ userInput, setUserInput, currentPage, setCurrentPage }}>
+    <InputContext.Provider value={{ userInput, setUserInput, currentPage, setCurrentPage, selectValue, setSelectValue }}>
       <div className="App shadow-lg p-3 mb-5 bg-white rounded">
         <Header />
         <Content />

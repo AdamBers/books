@@ -1,4 +1,5 @@
 const GET_BOOKS = 'GET_BOOKS'
+const LOAD_MORE = 'LOAD_MORE'
 
 const defaultState = {
     kind: '',
@@ -14,6 +15,9 @@ export const booksReducer = (state = defaultState, action) => {
             // state.totalItems= action.payload.totalItems
             // console.log(state)
             return action.payload
+        case LOAD_MORE:
+            const merged = state.items.concat(action.payload.items)
+            return { ...state, items: [...merged] }
         default:
             return state
     }
@@ -21,4 +25,7 @@ export const booksReducer = (state = defaultState, action) => {
 
 export const getBooksAction = (payload) => (
     { type: GET_BOOKS, payload }
+)
+export const loadMoreAction = (payload) => (
+    { type: LOAD_MORE, payload }
 )

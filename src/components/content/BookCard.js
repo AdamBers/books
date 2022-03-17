@@ -2,8 +2,8 @@ import React from 'react'
 
 const BookCard = ({ book }) => {
     return (
-        <div className='d-flex align-top m-2 p-3 flex-column justify-content-between shadow-lg bg-white rounded' style={{ width: 250 }}>
-            <div>
+        <div className='d-flex align-top m-2 p-3 flex-column justify-content-between shadow-lg bg-white rounded text-wrap' style={{ width: 250 }}>
+            <div className='text-break'>
                 {book?.volumeInfo?.imageLinks?.thumbnail
                     ? <img src={book.volumeInfo.imageLinks.thumbnail} alt="icon" className='mx-auto d-block m-3 shadow-lg' style={{ height: 200, width: 150 }} />
                     : <div className='mx-auto d-block m-3' style={{ height: 200 }}></div>
@@ -13,8 +13,8 @@ const BookCard = ({ book }) => {
                     : <p className='p-3' style={{ height: 25 }}></p>
                 }
                 {book?.volumeInfo?.title
-                    ? <p className='p-2 fw-bold'>{book.volumeInfo.title}</p>
-                    : <p className='p-2 fw-bold'></p>
+                    ? <p className='p-2 fw-bold '>{book.volumeInfo.title}</p>
+                    : <p className='p-2 fw-bold '></p>
                 }
             </div>
             <div>
