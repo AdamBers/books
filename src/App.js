@@ -11,10 +11,11 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1)
   const [selectValue, setSelectValue] = useState('')
   const [sortingBy, setSortingBy] = useState("relevance")
+  const [currentItem, setCurrentItem] = useState({})
   return (
     <InputContext.Provider value={{
       userInput, setUserInput, currentPage, setCurrentPage,
-      selectValue, setSelectValue, sortingBy, setSortingBy
+      selectValue, setSelectValue, sortingBy, setSortingBy, currentItem, setCurrentItem
     }}>
 
       <div className="App shadow-lg p-3 mb-5 bg-white rounded">
@@ -22,7 +23,7 @@ function App() {
           <Header />
           <Routes>
             <Route path='/' element={<Content />} />
-            <Route path='/item' element={<BookItem book={book} />} />
+            <Route path='/item' element={<BookItem book={currentItem} />} />
           </Routes>
         </Router>
 

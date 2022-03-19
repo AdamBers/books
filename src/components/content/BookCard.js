@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import InputContext from '../../context'
 
 
 const BookCard = ({ book }) => {
+    const { setCurrentItem } = useContext(InputContext)
+    const handleClick = () => {
+        setCurrentItem(book)
+    }
+
     return (
         <>
 
             <div className='d-flex align-top m-2 p-3 flex-column justify-content-between shadow-lg bg-white rounded text-wrap' style={{ width: 250 }}>
                 <div className='text-break'>
                     {book?.volumeInfo?.imageLinks?.thumbnail ?
-                        <Link to='/item' book={{ book }}><img src={book.volumeInfo.imageLinks.thumbnail} alt="icon" className='mx-auto d-block m-3 shadow-lg' style={{ height: 200, width: 150 }} /></Link>
+                        <Link to='/item' onClick={() => handleClick(book)}><img src={book.volumeInfo.imageLinks.thumbnail} alt="icon" className='mx-auto d-block m-3 shadow-lg' style={{ height: 200, width: 150 }} /></Link>
                         : <div className='mx-auto d-block m-3' style={{ height: 200 }}></div>
                     }
 
