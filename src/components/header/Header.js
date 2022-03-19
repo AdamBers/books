@@ -3,29 +3,35 @@ import { useDispatch } from 'react-redux'
 import { fetchBooks } from '../../store/asyncAction/fetch'
 import InputContext from '../../context'
 import background from '../../background.jpg'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     // states
     const { userInput, setUserInput, currentPage,
-        setCurrentPage, selectValue, setSelectValue } = useContext(InputContext)
+        setCurrentPage, selectValue, setSelectValue, sortingBy, setSortingBy } = useContext(InputContext)
 
     const handleChange = (e) => {
         setUserInput(e.currentTarget.value)
     }
+
     const dispatch = useDispatch()
-    const handleClick = () => {
-        setSelectValue('all')
+
+    const handleSearch = () => {
         setCurrentPage(1)
-        dispatch(fetchBooks(userInput, currentPage))
+        dispatch(fetchBooks(userInput, currentPage, selectValue, sortingBy))
     }
 
     const selectChange = (e) => {
         setSelectValue(e.target.value)
     }
+
+    const sortingChange = (e) => {
+        setSortingBy(e.target.value)
+    }
     return (
         <div className="header text-center p-4" style={{ backgroundImage: "url(" + background + ")" }}>
             <div className="logo m-4 text-light ">
-                <p className='h1'>Google Books</p>
+                <Link to='/' style={{ color:'#FFF'}}><p className='h1'>Google Books</p></Link>
             </div>
             <div className="input-group text-center mb-4 w-50 mx-auto">
                 <input
@@ -39,7 +45,7 @@ export default function Header() {
                 <button
                     type="button"
                     className="btn-secondary "
-                    onClick={handleClick}
+                    onClick={handleSearch}
                 >
                     search
                 </button>
@@ -48,7 +54,7 @@ export default function Header() {
 
                 <span className='text-light mx-3'>Categories
                     <select value={selectValue} onChange={selectChange}>
-                        <option value="all">All</option>
+                        <option value="">All</option>
                         <option value="art">Art</option>
                         <option value="biography">Biography</option>
                         <option value="computers">Computers</option>
@@ -59,8 +65,8 @@ export default function Header() {
                 </span>
 
                 <span className='text-light mx-3'>Sorting by
-                    <select>
-                        <option value="relevance ">Relevance </option>
+                    <select value={sortingBy} onChange={sortingChange}>
+                        <option value="relevance">Relevance </option>
                         <option value="newest">Newest</option>
                     </select>
                 </span>

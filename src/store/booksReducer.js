@@ -10,14 +10,15 @@ const defaultState = {
 export const booksReducer = (state = defaultState, action) => {
     switch (action.type) {
         case GET_BOOKS:
-            // const newItems = [...state.items, ...action.payload.items]
-            // state.items = newItems
-            // state.totalItems= action.payload.totalItems
-            // console.log(state)
+            state = defaultState
             return action.payload
         case LOAD_MORE:
-            const merged = state.items.concat(action.payload.items)
-            return { ...state, items: [...merged] }
+            if (action.payload?.items) {
+                const merged = state.items.concat(action.payload.items)
+                return { ...state, items: [...merged] }
+            }
+            alert('NO MORE BOOKS AVAILABLE')
+            return state
         default:
             return state
     }

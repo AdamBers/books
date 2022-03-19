@@ -5,31 +5,22 @@ import { fetchBooks } from '../../store/asyncAction/fetch'
 import BookCard from './BookCard'
 
 export default function Content() {
-
     //states
-    const { userInput, currentPage, setCurrentPage, selectValue } = useContext(InputContext)
+    const { userInput, currentPage, setCurrentPage, sortingBy, selectValue } = useContext(InputContext)
     const dispatch = useDispatch()
     const books = useSelector(state => state.items)
     const resultsCount = useSelector(state => state.totalItems)
     const handleLoad = () => {
-        dispatch(fetchBooks(userInput, currentPage + 1))
         setCurrentPage(currentPage + 1)
+        dispatch(fetchBooks(userInput, currentPage + 1, sortingBy, selectValue))
     }
 
-    //filter
-    var filtered = books
-    if (resultsCount) {
-        if (selectValue !== 'all') {
-            filtered = books.filter((book) => {
-                return book?.volumeInfo?.categories && book.volumeInfo.categories[0].toLowerCase().includes(selectValue.toLowerCase())
-            })
-        }
-
+    if (resultsCount)
         return (
             <>
-                <div className='text-center m-4 fw-bold'>found {filtered.length} result(s)</div>
+                <div className='text-center m-4 fw-bold'>found {resultsCount} result(s)</div>
                 <div className="d-flex justify-content-center align-items-stretch flex-wrap my-5">
-                    {filtered.map((book, index) =>
+                    {books.map((book, index) =>
                         <BookCard book={book} key={index} />)}
                 </div>
                 <div className="mx-auto text-center">
@@ -43,7 +34,7 @@ export default function Content() {
                 </div>
             </>
         )
-    }
+
     return (
         <p className='p-5 ' style={{ height: 600 }}>
             Using Google Books
