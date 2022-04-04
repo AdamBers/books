@@ -1,7 +1,6 @@
 ![Header](https://github.com/AdamBers/books/blob/38d9421cbf1a8440c481a650cce3f543c5f42a1c/public/Books.jpg)
 
-#It's books library application, created on GoogleBooksApi.
-Created by using React, Redux, Redux Thunk, react-router-dom,  bootstrap. You can sort sort and filter results. Pagination by method 'load more'. Responsive design
+# It's books library application, created in React using GoogleBooks Api, Redux, Redux Thunk, react-router-dom,  bootstrap. Sorting results by newest or relevence and filter categories. Pagination implemented by method 'load more'. Responsive design
 
 # Getting Started with Create React App
 
