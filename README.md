@@ -1,4 +1,4 @@
-[![Header](https://github.com/AdamBers/books/blob/e9967654baef5ebdfc2b112590ddd231b9e435e5/Googlebooks.jpg)
+[![Header](https://github.com/AdamBers/books/blob/38d9421cbf1a8440c481a650cce3f543c5f42a1c/public/Books.jpg)
 
 # Getting Started with Create React App
 
