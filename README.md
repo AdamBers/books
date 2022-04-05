@@ -5,7 +5,7 @@ Books library application, created in React using GoogleBooks Api, Redux, Redux 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).   
-This app is using [ReduxDevTools] extension in browser. Dont forget to install it.
+Dont forget to install [ReduxDevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
 ## Available Scripts
 
