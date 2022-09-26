@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/index.aspx/static/css/main.f181bd0e.css",
+    "main.js": "/index.aspx/static/js/main.cc93a0e7.js",
+    "static/media/background.jpg": "/index.aspx/static/media/background.d63da628ecd029914104.jpg",
+    "index.html": "/index.aspx/index.html",
+    "main.f181bd0e.css.map": "/index.aspx/static/css/main.f181bd0e.css.map",
+    "main.cc93a0e7.js.map": "/index.aspx/static/js/main.cc93a0e7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f181bd0e.css",
+    "static/js/main.cc93a0e7.js"
+  ]
+}
