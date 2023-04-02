@@ -31,7 +31,7 @@ export default function Header() {
     return (
         <div className="header text-center p-4" style={{ backgroundImage: "url(" + background + ")" }}>
             <div className="logo m-4 text-light ">
-                <Link to='/' style={{ color:'#FFF'}}><p className='h1'>Search Books</p></Link>
+                <Link to='/' style={{ color:'#FFF'}}><p className='h1'>Search books</p></Link>
             </div>
             <div className="input-group text-center mb-4 w-50 mx-auto">
                 <input
